@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+ 
+    <script src=https://code.jquery.com/jquery-3.7.0.min.js></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <!-- 반응형 적용을 위한 meta 태그 / 해당 태그 없으면 미디어 쿼리 적용 안됨 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--  style css 파일의 import  -->
+    <link href="css/import.css" rel="stylesheet" type="text/css">
+     <script type="text/javascript">
+        $(function(){
+            $(".main_menu li").on('mouseenter',() => {
+                $('.bottom_header').slideDown();
+            });
+
+            $(".top_header nav").on('mouseleave',(event) => {
+                var mouseX = event.clientX;
+                var mouseY = event.clientY;
+
+                var hoveredElement = document.elementFromPoint(mouseX, mouseY);
+                var hoveredClassName = hoveredElement?.className;
+
+                if(hoveredClassName != 'bottom_header' && hoveredClassName != 'temp'){
+                    $('.bottom_header').slideUp();
+                }
+            })
+
+            $('.bottom_header').mouseleave(() => {
+                $('.bottom_header').slideUp();
+            })
+
+            $('.main_slide').bxSlider({
+                mode:"fade",
+                auto: true,
+                autoHover: true,
+                controls: false,
+                speed : 1000,        //이미지가 다음 이미지로 바뀌는데 걸리는 시간 1000=1초
+                randomStart: true, //슬라이더의 시작을 랜덤으로 시작, [false, true]
+                pager :  false, //블릿버튼의 노출여부 [false, true]
+                authControls : false, //시작, 정지버튼 노출 여부 [false, true]
+                pause: 3000,        //하나의 이미지가 멈춰서 보여지는 시간 1000=1초
+                easing: "ease-in-out"
+            })
+
+	})
+     </script>
+     <style>
+        header{
+            width: 100%;
+            /* height: 300px; */
+            background-color: bisque;
+            margin-bottom: 30px;
+
+        }
+        .bottom_header{
+            width: 100%;
+            height: 300px;
+            display: none;
+            background-color: aqua;
+        }
+
+        body article{
+            width: 1260px;
+            margin: 0 auto;
+        }
+
+        .main_slide img{
+           
+
+        }
+
+        
+
+
+     </style>
+</head>
+<body>
+    <div class="top_banner">
+        <figure >
+            <img src="./images/top_banner.png">
+        </figure>
+    </div>
+   
+   <header>
+        <div class="top_header">
+            <h1><img src="./images/logo.png" alt=""></h1>
+            <nav>
+                <ul class="sub_menu">
+                    <li>로그인</li>
+                    <li>회원가입</li>
+                    <li>마이페이지</li>
+                    <li>장바구니</li>
+                </ul>
+                <ul class="main_menu">
+                    <li class="temp">회사소개</li>
+                    <li class="temp">제품안내</li>
+                    <li class="temp">마켓</li>
+                    <li class="temp">고객후기</li>
+                    <li class="temp">고객센터</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="bottom_header">
+            bottom_header
+        </div>
+    </header>
+
+    <article>
+        <div class="main_slide">
+            <img src="/images/1-3.png" alt="메인 슬라이드 이미지 1">
+            <img src="/images/2-1.png" alt="메인 슬라이드 이미지 2">
+            <img src="/images/3-1.png" alt="메인 슬라이드 이미지 3">
+        </div>
+        <div class="Best_Menu">
+            <div id="BestMenu_title">
+                <h2>Best Menu</h2>
+                <p>정원김치의 베스트 메뉴를 만나보세요.</p>
+            </div>
+            <div id="MenuImg_Tab">
+                <ul>
+                    <li>
+                        기본메뉴
+                        <ul>
+                            <li>
+                                <img src="" alt="메뉴1-1">
+                                <h3>기본메뉴</h3>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </article>
+   
+</body>
+</html>
