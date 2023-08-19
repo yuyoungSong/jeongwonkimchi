@@ -8,12 +8,36 @@
 @media screen and (max-width:767px){}
 
 
+
 /*=================================================================*/
+body article{
+    width: 1000px;
+    margin: 0 auto;
+}
+/*=================================================================*/
+
+.wrap{
+    position: relative;
+}
+.wrap header{
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 100000;
+}
+.wrap article{
+    position: relative;
+    top: 100px;
+    z-index: -1;
+}
+
+/*=================================================================*/
+
 .top_banner{
     width: 100%;
     height: 65px;
     background-color:#f8f8f9;
-    margin-bottom: 30px ;
+    margin-bottom: 50px ;
 }
 .top_banner figure {
     width: 650px;
@@ -23,8 +47,8 @@
 /*=================================================================*/
 
 .top_header{
-    width: 1260px;
-    height: 60px;
+    width: 1000px;
+    height: 50px;
     margin: 0 auto;
     /* background-color: blue; */
     display: flex;
@@ -51,18 +75,19 @@
 }
 
 .top_header nav ul{
-    height: 30px;
+    height: 25px;
     /* background-color: red; */
 
 }
 
 .top_header nav ul li{
+    height: 25px;
     float: left;
-    line-height: 30px;
     text-align: right;
-    font-size: 13px;
-    font-weight: 800;
+    font-size: 11px;
     color:rgb(75, 75, 75);
+    letter-spacing: 2px;
+color: rgb(110 108 108)
 }
 
 .main_menu{
@@ -74,6 +99,13 @@
 
 .main_menu li{
     width: 20%;
+    line-height: 35px;
+    cursor: pointer;
+    font-weight: bold !important;
+}
+
+.main_menu li:hover{
+    color: #4d7f37;
 }
 
 .sub_menu{
@@ -87,6 +119,7 @@
 
 .sub_menu li{
     width: 25%;
+    line-height: 15px;
     font-size: 10px !important;
 }
 /*=================================================================*/
