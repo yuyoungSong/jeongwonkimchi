@@ -39,7 +39,6 @@ header{
 .wrap article{
     position: relative;
     padding-top: 100px;
-    z-index: -1;
 }
 
 /*=================================================================*/
