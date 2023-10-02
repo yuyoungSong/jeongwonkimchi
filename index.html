@@ -20,10 +20,10 @@
             // $(".top_header nav").on('mouseleave',(event) => {
             //     const mouseX = event.clientX;
             //     const mouseY = event.clientY;
-            //
+            
             //     const hoveredElement = document.elementFromPoint(mouseX, mouseY);
             //     const hoveredClassName = hoveredElement?.className;
-            //
+            
             //     if(hoveredClassName != 'bottom_header' && hoveredClassName != 'temp'){
             //         $('.bottom_header').slideUp();
             //     }
@@ -49,11 +49,11 @@
             // 베스트 메뉴의 슬라이더
 
             $('#best_menu .item_slider ul').bxSlider({
-                auto: false,
+                // auto: true,
                 autoHover: true,
                 controls: false,
                 speed : 1000,        //이미지가 다음 이미지로 바뀌는데 걸리는 시간 1000=1초
-                randomStart: true, //슬라이더의 시작을 랜덤으로 시작, [false, true]
+                randomStart: false, //슬라이더의 시작을 랜덤으로 시작, [false, true]
                 authControls : false, //시작, 정지버튼 노출 여부 [false, true]
                 pause: 3000,        //하나의 이미지가 멈춰서 보여지는 시간 1000=1초
                 easing: "ease-in-out",
@@ -61,11 +61,28 @@
                 infiniteLoop: true,
             })
 
+            // // 미니 슬라이더
+
+              $('.underSlider ul').bxSlider({
+                mode:"fade",
+                  auto: true,
+                 
+                 controls: false,
+                  speed : 1000,        //이미지가 다음 이미지로 바뀌는데 걸리는 시간 1000=1초
+                 randomStart: true, //슬라이더의 시작을 랜덤으로 시작, [false, true]
+                  pager :  false, //블릿버튼의 노출여부 [false, true]
+                  authControls : false, //시작, 정지버튼 노출 여부 [false, true]
+                  pause: 4000,        //하나의 이미지가 멈춰서 보여지는 시간 1000=1초
+                //  easing: "ease-in-out"
+                
+              })
+
 	})
      </script>
      <style>
+     
          #best_menu{
-             padding-bottom:50px;
+             padding-bottom:65px;
              text-align: center;
          }
 
@@ -100,6 +117,7 @@
             line-height: 40px;
             border-radius: 20px;
             font-weight: 600;
+            font-size: 13px;
             background-color: rgba(222, 227, 220, 0.5);
             
            
@@ -112,6 +130,270 @@
             color: rgb(3, 142, 61);
             font-weight: bold;
          }
+
+         .item_slider ul li{
+           
+            display: flex;
+            flex-direction: column;
+            /* vertical-align:middle; */
+            /* flex-direction: column; */
+            /* justify-content: center; */
+            align-items: center;
+        }
+
+         .bestMenuList{
+            /* background-color: gray; */
+            width: 100%;
+            height: 330px;
+            /* margin-bottom: 10px; */
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+         }
+
+         .bestMenuList figcaption{
+            width: 210px;
+            height: 100%;
+            /* background-color: antiquewhite; */
+         }
+         .bestMenuList figcaption .itemImg{
+            width: 200px;
+            height: 170px;
+            /* background-color: aquamarine; */
+            margin: 0 auto  25px;
+            
+            
+         }
+         .bestMenuList figcaption img{
+            height: 170px;
+         }
+         .bestMenuMore{
+            width: 100px;
+            height: 25px;
+            line-height: 24px;
+            border: 1px solid rgb(194, 194, 194);
+            border-radius: 30px;
+            font-size: 10px;
+            /* margin: 10px 0; */
+            font-weight: bold;
+            color: rgb(85, 85, 85);
+        
+         }
+
+         .itemTitle h2{
+            font-size: 13px;
+         }
+         .itemTitle > p{
+            letter-spacing: 1px;
+            font-size: 11px;
+            margin: 3px 0;
+            color: rgb(179, 176, 176);
+
+
+         }
+         .itemTitle .itemCont{
+            margin: 10px 0;
+            font-size: 12px;
+         }
+      
+
+         .itemTitle div span{
+            font-size: 13px; 
+            color: green;
+         }
+         .itemTitle div:last-child{
+            font-size: 10px;
+         }
+/* ///////////////////// */
+         .underSlider{
+            /* background-color: rgb(133, 156, 27); */
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 65px;
+            width: 1000px;
+            height: 310px;
+         }
+         .underSlider ul{
+            /* background-color: aquamarine; */
+            width: 350px !important;
+            /* height: 310px !important; */
+            /* margin-right: 15px !important; */
+
+
+         }
+       
+
+          .underSlider #imgBanner{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+           width: calc(1000px - 350px - 15px) ;
+           margin-left: 15px;
+           
+         }
+         .underSlider #imgBanner  div{
+            background-color: #f5f5f5;
+            height: 147.5px;
+            
+            
+         }
+        
+         .underSlider #imgBanner div img{
+            width:450px;
+            margin-left: 100px;
+            margin-top: 10px;
+            
+         }
+
+
+/* ///////////////////// */
+.monthlyMenu{
+    margin-bottom:65px;
+}
+
+.monthlyMenu .title{
+            background-image: url(./images/이달의메뉴.png);
+            background-size: 100%;
+            background-repeat:no-repeat;
+            height: 120px;
+            width: 100%;
+            text-align: center;
+            
+            
+         }
+.monthlyMenu figcaption{
+    background-color: bisque;
+    height: 400px;
+}
+
+#noticeImg{
+    margin-bottom: 65px;
+}
+#noticeImg > div{
+    text-align: right;
+    margin-bottom: 20px;
+}
+#noticeImg ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#noticeImg ul li{
+    width: 150px;
+}
+#noticeImg ul li a{
+    text-align: center;
+}
+
+#noticeImg ul li a div{
+    margin-bottom: 5px;
+}
+#noticeImg ul li a p{
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#noticeImg ul li a p:last-child{
+    font-size: 9px;
+    color:gray;
+}
+
+#noticeImg ul li{
+    filter:grayscale(100%);
+}
+
+#noticeImg ul li:hover{
+    cursor: pointer;
+    filter:grayscale(0%);
+}
+
+
+
+/* //////////////////////////////// */
+#informJW_Notice{
+    height: 290px;
+    /* background-color: antiquewhite; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 120px;
+}
+#informJW{
+    /* background-color: aqua; */
+    width: 600px;
+    margin-right: 30px;
+}
+#informJW div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    
+}#informJW h2{
+    font-size: 17px;
+    
+}
+#informJW > p{
+    border-bottom: 1px solid rgba(201, 201, 201, 0.575);
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    text-align: right;
+}
+#informJW ul li{
+    display: flex;
+    flex-direction: row;
+    margin: 0 20px 20px;
+    justify-content: space-between;
+}
+
+#informJW ul li p:last-child{
+    font-size: 12px;
+    color: rgb(182, 182, 182);
+}
+
+
+#Notice{
+    /* background-color: aquamarine; */
+    width: 330px;
+}
+#Notice h2{
+    height: 50px;
+    border-bottom: 1px solid rgba(201, 201, 201, 0.575);
+    margin-bottom: 10px;
+}
+#Notice ul{
+  
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#Notice ul li{
+    background-color: gray;
+    width: 160px;
+    height: 105px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+#Notice ul li:nth-child(2n){
+margin-right: 0px;
+}
+
+
+/* ////////////////////////////////////// */
+footer{
+    margin: 0 auto;
+    height: 250px;
+    width: 1000px;
+    border: 1px solid rgba(201, 201, 201, 0.575);
+    margin-bottom: 30px;
+}
+
+
 
      </style>
 </head>
@@ -150,13 +432,13 @@
            <section class="main_slide" style="margin-bottom:50px">
                <ul>
                    <li>
-                       <img src="./images/kimchi01.png" alt="메인 슬라이드 이미지 1">
+                       <img src="./images/kimchi01-1.png" alt="메인 슬라이드 이미지 1">
                    </li>
                    <li>
-                       <img src="./images/kimchi02.png" alt="메인 슬라이드 이미지 2">
+                       <img src="./images/kimchi02-2.png" alt="메인 슬라이드 이미지 2">
                    </li>
                    <li>
-                    <img src="./images/kimchi03.png" alt="메인 슬라이드 이미지 3">
+                    <img src="./images/kimchi03-3.png" alt="메인 슬라이드 이미지 3">
                 </li>
                </ul>
            </section>
@@ -168,21 +450,240 @@
                <ul class="pager">
                 <li><a data-slide-index="0" href="">기본류</a></li>
                 <li><a data-slide-index="1" href="">장아찌류</a></li>
-                <li><a data-slide-index="3" href="">캡스톤실비</a></li>
-                <li><a data-slide-index="4" href="">물김치류</a></li>
-                <li><a data-slide-index="5" href="">기타</a></li>
+                <li><a data-slide-index="2" href="">캡스톤실비</a></li>
+                <!-- <li><a data-slide-index="4" href="">물김치류</a></li> -->
+                <li><a data-slide-index="3" href="">기타</a></li>
             </ul>
                <div class="item_slider">
                    <ul>
-                     <li style="background: red">1</li>
-                       <li style="background: orange">2</li>
-                       <li style="background: green">3</li>
+                        <li>
+                            <div class="bestMenuList">
+                                <a href="#">
+                                    <figcaption id="POGI">
+                                        <div class="itemImg"><img src="./images/포기.png" alt="제품사진_기본류_포기김치"></div>
+                                        <div class="itemTitle">
+                                            <h2>포기김치</h2>
+                                            <p>POGI KIMCHI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                <a href="#">
+                                    <figcaption id="albaegi">
+                                        <div class="itemImg"><img src="./images/겉절이_2.png" alt="제품사진_기본류_알배기겉절이"></div>
+                                        <div class="itemTitle">
+                                            <h2>알배기겉절이</h2>
+                                            <p>ALBAEGI GEOTGEORI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                <a href="#">
+                                    <figcaption id="POGI">
+                                        <div class="itemImg"><img src="./images/총각.png" alt="제품사진_기본류_포기김치"></div>
+                                        <div class="itemTitle">
+                                            <h2>총각김치</h2>
+                                            <p>CHONG-GAG KIMCHI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                <a href="#">
+                                    <figcaption id="POGI">
+                                        <div class="itemImg"><img src="./images/갓김치_2.png" alt="제품사진_기본류_포기김치"></div>
+                                        <div class="itemTitle">
+                                            <h2>갓김치</h2>
+                                            <p>GAS KIMCHI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                
+                            </div>
+                            <div class="bestMenuMore">MORE</div>
+                        </li>
+                        <li style="background: orange">
+                        2
+                        </li>
+                        <li style="background: green">3</li>
+                        <!-- <li style="background: green">3</li> -->
+                        <li style="background: rgb(0, 23, 128)">4</li>
                    </ul>
                </div>
 
            </section>
+
+            <section class="underSlider">
+                <ul>
+                    <li><img src="./images/minislider01.png" alt=""></li>
+                    <li><img src="./images/minislider02.png" alt=""></li>                
+                </ul>
+                <div id="imgBanner">
+                    <a href="">
+                        <div>
+                            <img src="./images/정기구독.png" alt="">
+                        </div>
+                    </a>
+                    <a href="">
+                        <div>
+                            <img src="./images/상차림.png" alt="추천레시피">
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="monthlyMenu">
+                
+                <div class="title">
+                    <h2>Monthly Menu</h2>
+                    <p>정원김치의 10월 추천메뉴입니다.</p>
+                    <!-- 10월 -> 여기는 자동으로 바뀌게 설정 -->
+
+                </div>
+                <figcaption>
+                    <!-- 스크롤 내려오면 나타나도록 -->
+                    <ul>
+                        <p>총각김치</p>
+                        <p>10월에는 무우가 어쩌구저쩌구
+                            1년 중 가장 맛있는 무우로 담은
+                            총각김치입니다.
+                        </p>
+                    </ul>
+                    <div>
+                        <img src="" alt="">
+                    </div>
+
+                    <div>구매하기</div>
+                    
+                </figcaption>
+                
+            </section>
+
+            <section id="noticeImg">
+                <!-- 팝업필요 -->
+                <div>more ></div>
+                <ul>
+                    <li>
+                        <a href="">
+                            <div><img src="./images/notice01.png" alt=""></div>
+                            <p>추석 배송</p>
+                            <p>2023.10.01 - 10.31</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div><img src="./images/notice02.png" alt=""></div>
+                            <p>대파김치이벤트</p>
+                            <p>2023.10.01 - 10.31</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div><img src="./images/notice03.png" alt=""></div>
+                            <p>신메뉴 안내</p>
+                            <p>2023.10.01 - 10.31</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div><img src="./images/notice04.png" alt=""></div>
+                            <p>종료메뉴 안내</p>
+                            <p>2023.10.01 - 10.31</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div><img src="./images/notice05.png" alt=""></div>
+                            <p>대파김치 판매</p>
+                            <p>2023.10.01 - 10.31</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div><img src="./images/notice06.png" alt=""></div>
+                            <p>광복절 배송안내</p>
+                            <p>2023.10.01 - 10.31</p>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="informJW_Notice">
+                <div id="informJW">
+                    
+                        <h2>정원김치소식</h2>
+                        
+                    
+                    <p>more ></p>
+                    <ul>
+                        <li>
+                            <p>제목</p>
+                            <p>2023-10-01</p>
+                        </li>
+                        <li>
+                            <p>제목</p>
+                            <p>2023-10-01</p>
+                        </li>
+                        <li>
+                            <p>제목</p>
+                            <p>2023-10-01</p>
+                        </li>
+                        <li>
+                            <p>제목</p>
+                            <p>2023-10-01</p>
+                        </li>
+                    </ul>
+                </div>
+                <div id="Notice">
+                    <h2>NOTICE</h2>
+                    <ul>
+                        <li><img src="" alt="배송안내"></li>
+                        <li><img src="" alt="Q & A"></li>
+                        <li><img src="" alt="고객센터"></li>
+                        <li><img src="" alt="배송일정안내"></li>
+                        
+                    </ul>
+                </div>
+            </section>
+
+
        </article>
    </div>
+   <footer>
+    
+   </footer> 
 
 </body>
 </html>
