@@ -39,7 +39,10 @@ header{
 .wrap article{
     position: relative;
     padding-top: 100px;
+<<<<<<< HEAD
     /* z-index: -1; */
+=======
+>>>>>>> 9f1cf38bc5edb76d5ab384fbde709ef247352425
 }
 
 /*=================================z-index check================================*/
