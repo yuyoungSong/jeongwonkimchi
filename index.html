@@ -32,7 +32,66 @@
             //     $('.bottom_header').slideUp();
             // })
 
-            // 메인 이미지 슬라이드
+//             $('.main_menu li').hover(function(){
+//                 $('.bottom_header').css("display",'block');
+                
+
+//             })
+//             $('.main_menu, .bottom_header').mouseleave(function() {
+//     $('.bottom_header').css('display', 'none');
+//   });
+let isMainMenuHovered = false;
+  let isBottomHeaderHovered = false;
+
+  // 마우스가 .main_menu에 진입하면 .bottom_header를 보이도록 설정
+  $('.main_menu').mouseenter(function() {
+    isMainMenuHovered = true;
+    showHideBottomHeader();
+  });
+
+  // 마우스가 .main_menu에서 벗어나면 해당 상태를 갱신
+  $('.main_menu').mouseleave(function() {
+    isMainMenuHovered = false;
+    showHideBottomHeader();
+  });
+
+  // 마우스가 .bottom_header에 진입하면 해당 상태를 갱신
+  $('.bottom_header').mouseenter(function() {
+    isBottomHeaderHovered = true;
+    showHideBottomHeader();
+  });
+
+  // 마우스가 .bottom_header에서 벗어나면 해당 상태를 갱신
+  $('.bottom_header').mouseleave(function() {
+    isBottomHeaderHovered = false;
+    showHideBottomHeader();
+  });
+
+  // .bottom_header를 보이거나 숨기는 함수
+  function showHideBottomHeader() {
+    if (isMainMenuHovered){$('.bottom_header').slideDown();}
+    if (isMainMenuHovered || isBottomHeaderHovered) {
+    //   $('.bottom_header').css('visibility', 'visible');
+    //   $('.bottom_header').css('opacity', '1');
+    
+    
+    $('.bottom_header').css('display', 'block');
+    
+
+    } else {
+    //   $('.bottom_header').css('visibility', 'hidden');
+    //   $('.bottom_header').css('opacity', '0');
+    
+    $('.bottom_header').css('display', 'none');
+    
+    }
+  }
+
+
+////////////////////////////////////////////////////////////////////////////////
+       
+
+////////////////////////////////////////////////////////////////////////////////
             $('.main_slide ul').bxSlider({
                 mode:"fade",
                 auto: true,
@@ -68,14 +127,48 @@
                   auto: true,
                  
                  controls: false,
-                  speed : 1000,        //이미지가 다음 이미지로 바뀌는데 걸리는 시간 1000=1초
+                  speed : 500,        //이미지가 다음 이미지로 바뀌는데 걸리는 시간 1000=1초
                  randomStart: true, //슬라이더의 시작을 랜덤으로 시작, [false, true]
                   pager :  false, //블릿버튼의 노출여부 [false, true]
                   authControls : false, //시작, 정지버튼 노출 여부 [false, true]
-                  pause: 4000,        //하나의 이미지가 멈춰서 보여지는 시간 1000=1초
+                  pause: 3000,        //하나의 이미지가 멈춰서 보여지는 시간 1000=1초
                 //  easing: "ease-in-out"
                 
               })
+              $(window).scroll( function(){
+			
+            $('.monthlyMenu  figcaption').each( function(i){
+                
+                var bottom_of_element = $(this).offset().top + $(this).outerHeight()/2;
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+                
+                if( bottom_of_window > bottom_of_element ){
+                    $(this).animate({'opacity':'1'},700);
+                }
+                
+            }); 
+        });
+///////////////////////////////////////////////////////
+        let currentImageIndex = 0;
+const images = document.querySelectorAll('#noticeImg ul li img');
+
+function updateImageColor() {
+  for (let i = 1; i <= 6; i++) {
+    let select = '#noticeImg ul li:nth-child('+(i)+') ';
+    let selector = select+'img';
+
+
+    if (i === currentImageIndex) {
+      $(selector).css('filter', 'grayscale(0%)');  // Remove grayscale effect for the current image
+    } else {
+        $(selector).css('filter','grayscale(100%)');  // Apply grayscale effect for other images
+    }
+  }
+
+  currentImageIndex = (currentImageIndex + 1) % 7;
+}
+
+setInterval(updateImageColor, 1000);
 
 	})
      </script>
@@ -100,6 +193,9 @@
             font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-size: 30px;
             padding-bottom: 20px;
+            
+         }#best_menu .title p{
+            font-size: 12px;
          }
 
          /* 현재 활성화 되어있는 페이지의 페이저 CSS */
@@ -122,11 +218,11 @@
          }
 
          #best_menu .pager li a{
-             color: red;
+             color: black;
              cursor: pointer;
          }
          #best_menu .pager li a:hover{
-            color: blue;
+            color: rgb(3, 142, 61);
          }
 
          #best_menu .pager li a.active{
@@ -138,9 +234,6 @@
            
             display: flex;
             flex-direction: column;
-            /* vertical-align:middle; */
-            /* flex-direction: column; */
-            /* justify-content: center; */
             align-items: center;
         }
 
@@ -151,15 +244,16 @@
             /* margin-bottom: 10px; */
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: center;
          }
 
-         .bestMenuList figcaption{
+         .bestMenuList a{
             width: 210px;
             height: 100%;
+            margin: 0 15px;
             /* background-color: antiquewhite; */
          }
-         .bestMenuList figcaption .itemImg{
+         .bestMenuList a .itemImg{
             width: 200px;
             height: 170px;
             /* background-color: aquamarine; */
@@ -252,7 +346,8 @@
 
 /* ///////////////////// */
 .monthlyMenu{
-    margin-bottom:65px;
+    margin-bottom:100px;
+   
 }
 
 .monthlyMenu .title{
@@ -265,10 +360,71 @@
             
             
          }
-.monthlyMenu figcaption{
-    background-color: bisque;
-    height: 400px;
+         /* .monthlyMenu .title{
+            background-color: pink;
+         } */
+         .monthlyMenu .title h2{
+           padding-top: 5px;
+           font-size: 30px;
+           padding-bottom: 15px;
+         }.monthlyMenu .title p{
+            font-size: 12px;
+         }
+
+
+.monthlyMenu  figcaption{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: row;
+    height: 420px;
+    /* justify-content: space-between ; */
+    background-color: rgba(242, 242, 242,0.2);
+    opacity: 0;
 }
+.monthlyMenu  figcaption #monthlyContent{
+    margin-top: 80px;
+    margin-left: 50px;
+    width: 350px;
+    text-align: center;
+    
+}
+.monthlyMenu  figcaption #monthlyContent h2{
+    width: 220px;
+    font-size: 17px;
+    height: 50px;
+    
+    /* background-color: blue; */
+    margin-bottom: 50px;
+
+    
+
+}
+.monthlyMenu  figcaption #monthlyContent h2 > p:last-child{
+    text-align: right;
+    margin-left: 50px;
+}
+.monthlyMenu  figcaption #monthlyContent > p{
+    text-align: center;
+    line-height: 23px;
+    font-size: 13px;
+}
+.monthlyMenu > div:last-child{
+    /* background-color: aquamarine; */
+    text-align: center;
+    margin: 10px auto;
+
+}
+.monthlyMenu > div:last-child p{
+    width: 150px;
+    height: 30px;
+    border: 1px solid #f2f2f2;
+    border-radius: 30px;
+    display: inline-block;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+/* //////////////////////////////// */
 
 #noticeImg{
     margin-bottom: 65px;
@@ -303,12 +459,12 @@
     font-size: 9px;
     color:gray;
 }
-
-#noticeImg ul li{
+/* 
+#noticeImg ul li img {
     filter:grayscale(100%);
-}
+} */
 
-#noticeImg ul li:hover{
+#noticeImg ul li img:hover{
     cursor: pointer;
     filter:grayscale(0%);
 }
@@ -329,13 +485,26 @@
     width: 600px;
     margin-right: 30px;
 }
-#informJW div{
+
+#informJW #informJWTitle{
+    height: 17px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+
+}
+#informJW #informJWTitle div{
+    width: 20px;
+    margin-right: 15px;
+}
+#informJW #Notice{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     
     
-}#informJW h2{
+}
+#informJW h2{
     font-size: 17px;
     
 }
@@ -381,6 +550,10 @@
     height: 105px;
     margin-right: 10px;
     margin-bottom: 10px;
+    filter: grayscale(100%)
+}
+#Notice ul li:hover{
+    filter: grayscale(0%);
 }
 #Notice ul li:nth-child(2n){
 margin-right: 0px;
@@ -394,8 +567,59 @@ footer{
     width: 1000px;
     border: 1px solid rgba(201, 201, 201, 0.575);
     margin-bottom: 30px;
+    font-size: 10px;
+
+}
+footer #footerLogo{
+    width: 100px;
+    margin: 10px 20px ;
+}
+footer section{
+    margin: 0 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+footer #footerInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 450px;
 }
 
+footer #footerInfo div h2{
+    margin-bottom: 10px;
+}
+footer #footerInfo div p{
+    margin-bottom: 10px;
+}
+footer #footerSNS{
+    width: 200px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+footer #footerSNS figcaption div{
+   
+    margin-right: 10px;
+}
+footer #footerSNS figcaption p{
+    font-weight: bold;
+}
+footer #footerSNS figcaption{
+    display: flex;
+    flex-direction: row;
+    justify-content:right;
+}
+footer #footerSNS > div
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 
      </style>
@@ -409,13 +633,13 @@ footer{
    <div class="wrap" >
        <header>
            <div class="top_header">
-               <h1><img src="./images/logo.png" alt=""></h1>
+               <h1><img src="./images/logo2.png" alt=""></h1>
                <nav>
                    <ul class="sub_menu">
-                       <li>로그인</li>
-                       <li>회원가입</li>
-                       <li>마이페이지</li>
-                       <li>장바구니</li>
+                       <li><a href="">로그인</a></li>
+                       <li><a href="">회원가입</a></li>
+                       <li><a href="">마이페이지</a></li>
+                       <li><a href="">장바구니</a></li>
                    </ul>
                    <ul class="main_menu">
                        <li class="temp">회사소개</li>
@@ -427,7 +651,38 @@ footer{
                </nav>
            </div>
            <div class="bottom_header">
-               bottom_header
+               <ul>
+                    <li>
+                        <h2>회사소개</h2>
+                        <p>회사연혁</p>
+                        <p>회사비젼</p>
+                        <p>대표소개</p>
+                    </li>
+                    <li>
+                        <h2>제품안내</h2>
+                        <p>제품특징</p>
+                        <p>제품포장</p>
+                        
+                    </li>
+                    <li>
+                        <h2>제품구매</h2>
+                        <p>기본김치</p>
+                        <p>장아찌</p>
+                        <p>캡스톤김치</p>
+                        <p>기타</p>
+                    </li>
+                    <li>
+                        <h2>고객후기</h2>
+                        <p>제품후기</p>
+                        <p>한상자랑</p>
+                    </li>
+                    <li>
+                        <h2>고객센터</h2>
+                        <p>고객센터</p>
+                        <p>공지사항</p>
+                        <p>Q & A</p>
+                    </li>
+               </ul>
            </div>
        </header>
        <article>
@@ -536,12 +791,228 @@ footer{
                             </div>
                             <div class="bestMenuMore">MORE</div>
                         </li>
-                        <li style="background: orange">
+                        <li>
+                            <div class="bestMenuList">
+                                <a href="#">
+                                    <figcaption id="POGI">
+                                        <div class="itemImg"><img src="./images/모듬장아찌.png" alt="제품사진_장아찌류_모듬장아찌"></div>
+                                        <div class="itemTitle">
+                                            <h2>모둠장아찌</h2>
+                                            <p>POGI KIMCHI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>12,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                <a href="#">
+                                    <figcaption id="albaegi">
+                                        <div class="itemImg"><img src="./images/마늘고추장장아찌.png" alt="제품사진_장아찌류_마늘고추장장아찌"></div>
+                                        <div class="itemTitle">
+                                            <h2>마늘고추장장아찌</h2>
+                                            <p>ALBAEGI GEOTGEORI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                <a href="#">
+                                    <figcaption id="POGI">
+                                        <div class="itemImg"><img src="./images/오이지.png" alt="제품사진_장아찌류_오이지"></div>
+                                        <div class="itemTitle">
+                                            <h2>오이지</h2>
+                                            <p>CHONG-GAG KIMCHI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                
+                                
+                            </div>
+                            <div class="bestMenuMore">MORE</div>
+                        </li>
+                        <li>
+                            <div class="bestMenuList">
+                                <a href="#">
+                                    <figcaption id="POGI">
+                                        <div class="itemImg"><img src="./images/이미지준비중.jpg" alt="제품사진_기본류_포기김치"></div>
+                                        <div class="itemTitle">
+                                            <h2>포기김치</h2>
+                                            <p>POGI KIMCHI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                <a href="#">
+                                    <figcaption id="albaegi">
+                                        <div class="itemImg"><img src="./images/이미지준비중.jpg" alt="제품사진_기본류_알배기겉절이"></div>
+                                        <div class="itemTitle">
+                                            <h2>알배기겉절이</h2>
+                                            <p>ALBAEGI GEOTGEORI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                <a href="#">
+                                    <figcaption id="POGI">
+                                        <div class="itemImg"><img src="./images/이미지준비중.jpg" alt="제품사진_기본류_포기김치"></div>
+                                        <div class="itemTitle">
+                                            <h2>총각김치</h2>
+                                            <p>CHONG-GAG KIMCHI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                <a href="#">
+                                    <figcaption id="POGI">
+                                        <div class="itemImg"><img src="./images/이미지준비중.jpg" alt="제품사진_기본류_포기김치"></div>
+                                        <div class="itemTitle">
+                                            <h2>갓김치</h2>
+                                            <p>GAS KIMCHI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                
+                            </div>
+                            <div class="bestMenuMore">MORE</div>
+                        </li>
+                        <li>
+                            <div class="bestMenuList">
+                                <a href="#">
+                                    <figcaption id="POGI">
+                                        <div class="itemImg"><img src="./images/이미지준비중.jpg" alt="제품사진_기본류_포기김치"></div>
+                                        <div class="itemTitle">
+                                            <h2>포기김치</h2>
+                                            <p>POGI KIMCHI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                <a href="#">
+                                    <figcaption id="albaegi">
+                                        <div class="itemImg"><img src="./images/이미지준비중.jpg" alt="제품사진_기본류_알배기겉절이"></div>
+                                        <div class="itemTitle">
+                                            <h2>알배기겉절이</h2>
+                                            <p>ALBAEGI GEOTGEORI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                <a href="#">
+                                    <figcaption id="POGI">
+                                        <div class="itemImg"><img src="./images/이미지준비중.jpg" alt="제품사진_기본류_포기김치"></div>
+                                        <div class="itemTitle">
+                                            <h2>총각김치</h2>
+                                            <p>CHONG-GAG KIMCHI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                <a href="#">
+                                    <figcaption id="POGI">
+                                        <div class="itemImg"><img src="./images/이미지준비중.jpg" alt="제품사진_기본류_포기김치"></div>
+                                        <div class="itemTitle">
+                                            <h2>갓김치</h2>
+                                            <p>GAS KIMCHI</p>
+                                            <div class="itemCont">
+                                                한 상 차림의 기본 메뉴 <br>
+                                                정원김치의 기본 메뉴입니다.
+                                            </div>
+                                            <div>
+                                                <span>14,000</span>
+                                                won
+                                            </div>
+                                    
+                                        </div>
+                                    </figcaption>
+                                </a>
+                                
+                            </div>
+                            <div class="bestMenuMore">MORE</div>
+                        </li>
+                        <!-- <li style="background: orange">
                         2
                         </li>
                         <li style="background: green">3</li>
-                        <!-- <li style="background: green">3</li> -->
-                        <li style="background: rgb(0, 23, 128)">4</li>
+                        <li style="background: rgb(0, 23, 128)">4</li> -->
                    </ul>
                </div>
 
@@ -576,25 +1047,31 @@ footer{
                 </div>
                 <figcaption>
                     <!-- 스크롤 내려오면 나타나도록 -->
-                    <ul>
-                        <p>총각김치</p>
-                        <p>10월에는 무우가 어쩌구저쩌구
-                            1년 중 가장 맛있는 무우로 담은
-                            총각김치입니다.
+                    <div class="scrollImg" style="width: 300px;"><img src="./images/깍두기.png" alt=""></div>
+                    <div id="monthlyContent">
+                        <h2><p>총각김치와</p><p>깍두기</p></h2>
+                        <p>
+                            10월과 11월 제철인 무우와 총각무<br>
+                            날이 추워질때 자라나는 '겨울 무'는 <br>
+                            비타민, 식이섬유가 풍부하고<br>
+                            천연 소화제라 불리는 '디아스타제'성분도<br>
+                            다량 함유되어있어,<br>
+                            맛 뿐만 아니라 영양도 좋습니다. 
                         </p>
-                    </ul>
-                    <div>
-                        <img src="" alt="">
+                    
                     </div>
+                    <div class="scrollImg" style="width: 350px; margin-top:200px;"><img src="./images/총각김치.png" alt=""></div>
+                    
 
-                    <div>구매하기</div>
+                    
                     
                 </figcaption>
+                <div><p>구매하기</p></div>
                 
             </section>
 
             <section id="noticeImg">
-                <!-- 팝업필요 -->
+                <!-- 팝업필요, 1초마다 그레이스케일 토글 -->
                 <div>more ></div>
                 <ul>
                     <li>
@@ -614,14 +1091,14 @@ footer{
                     <li>
                         <a href="">
                             <div><img src="./images/notice03.png" alt=""></div>
-                            <p>신메뉴 안내</p>
+                            <p>9월 신메뉴</p>
                             <p>2023.10.01 - 10.31</p>
                         </a>
                     </li>
                     <li>
                         <a href="">
                             <div><img src="./images/notice04.png" alt=""></div>
-                            <p>종료메뉴 안내</p>
+                            <p>9월 종료메뉴</p>
                             <p>2023.10.01 - 10.31</p>
                         </a>
                     </li>
@@ -635,7 +1112,7 @@ footer{
                     <li>
                         <a href="">
                             <div><img src="./images/notice06.png" alt=""></div>
-                            <p>광복절 배송안내</p>
+                            <p>광복절 배송</p>
                             <p>2023.10.01 - 10.31</p>
                         </a>
                     </li>
@@ -644,26 +1121,29 @@ footer{
 
             <section id="informJW_Notice">
                 <div id="informJW">
-                    
-                        <h2>정원김치소식</h2>
+                        <div id="informJWTitle">
+                            <div><img src="./images/배추그림.png" alt="배추"></div>
+                            <h2>정원김치소식</h2>
+                        </div>
                         
                     
                     <p>more ></p>
+                    <!-- hover하면 밑줄, 클릭하면 게시판으로 이동(팝업x) -->
                     <ul>
                         <li>
-                            <p>제목</p>
+                            <p>[소식지] 복지센터 점심 행사</p>
                             <p>2023-10-01</p>
                         </li>
                         <li>
-                            <p>제목</p>
+                            <p>[상품] 가을 신메뉴 안내</p>
                             <p>2023-10-01</p>
                         </li>
                         <li>
-                            <p>제목</p>
+                            <p>[소식지] 방송출연</p>
                             <p>2023-10-01</p>
                         </li>
                         <li>
-                            <p>제목</p>
+                            <p>[공지] 추석연휴 배송 일정 공지</p>
                             <p>2023-10-01</p>
                         </li>
                     </ul>
@@ -671,10 +1151,11 @@ footer{
                 <div id="Notice">
                     <h2>NOTICE</h2>
                     <ul>
-                        <li><img src="" alt="배송안내"></li>
-                        <li><img src="" alt="Q & A"></li>
-                        <li><img src="" alt="고객센터"></li>
-                        <li><img src="" alt="배송일정안내"></li>
+                        <!-- 팝업(반투명 하얀배경), 밑에 [더보기이동] -->
+                        <li><a href=""><img src="./images/포장안내-g.png" alt="배송안내"></a></li>
+                        <li><a href=""><img src="./images/배송일정-g.png" alt="배송일정"></a></li>
+                        <li><a href=""><img src="./images/고객센터-g.png" alt="고객센터"></a></li>
+                        <li><a href=""><img src="./images/Q&A-g.png" alt="Q & A"></a></li>
                         
                     </ul>
                 </div>
@@ -684,7 +1165,67 @@ footer{
        </article>
    </div>
    <footer>
-    
+    <div id="footerLogo">
+        <img src="./images/logo_new_세로형.png" alt="캡스톤 정원김치">
+    </div>
+    <section>
+        <div id="footerInfo">
+            <div>
+                <h2>고객센터</h2>
+                <p>
+                    010-7613-1940<br>
+                    010-8310-1940
+                </p>
+            </div>
+            <div>
+                <div>
+                    <h2>매장운영시간</h2>
+                    <p>
+                        MON - THU : 09:00 - 19:00<br>
+                        FRI - SUN : HOLIDAY
+                    </p>
+                </div>
+                <div>
+                    <h2>계좌안내</h2>
+                    <p>
+                        신한은행 : 000-00-000000<br>
+                        예금주 : 김도경(정원김치)
+                    </p>
+                </div>
+            </div>
+            <div>
+                <h2>회사정보</h2>
+                <P>
+                    회사 : 캡스톤정원김치 <br>
+                    대표 : 김도경 <br>
+                    통신판매업신고 : 000000 <br>
+                    주소 : 서울시 성동구 용답길 141 1층 <br>
+
+
+                </P>
+            </div>
+        </div>
+
+        <div id="footerSNS">
+            <figcaption>
+                <div style="width: 20px;"><a href=""><img src="./images/insta.png" alt="인스타그램"></a></div>
+                <div style="width: 30px;"><a href=""><img src="./images/youtube.png" alt="유튜브"></a></div>
+                <p>FOLLOW US!</p>
+            </figcaption>
+            <div>
+                <p>개인정보보호방침</p>
+                <div>|</div>
+                <p>이용약관</p>
+                <div>|</div>
+                <p>이용안내</p>
+            </div>
+            
+        </div>
+    </section>
+    <div style="text-align: right; margin: 10px 20px;">
+        <h2>COPYRIGHT</h2>
+    </div>
+     
    </footer> 
 
 </body>

@@ -22,27 +22,62 @@ header{
 }
 .bottom_header{
     width: 100%;
-    height: 300px;
+    height: 200px;
     display: none;
-    background-color: aqua;
+
+    /* visibility:hidden;
+      opacity: 0;
+      transition:all 0.5s; */
+    background-color: rgba(174, 185, 166, 0.5);
+    z-index: 10000;
+    position:absolute;
+    top:155px;
+    
+    
 }
+
+
 /*=================================z-index check================================*/
+.bottom_header ul{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+    height: 100%;
+    /* background-color: blanchedalmond; */
+    justify-content: space-around;
+    
+}
+
+.bottom_header ul li{
+    margin: 20px 0;
+    font-size: 10px;
+}
+
+.bottom_header ul li h2{
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.bottom_header ul li p{
+    margin-bottom: 5px;
+    text-align: center;
+}
+
 .wrap{
-    position: relative;
+    /* position: relative; */
 }
 .wrap header{
-    position: absolute;
-    top:0;
-    left: 0;
+    /* position: absolute; */
+    /* top:0;
+    left: 0; */
     /* z-index: 100000; */
 }
 .wrap article{
     position: relative;
-    padding-top: 100px;
-<<<<<<< HEAD
-    /* z-index: -1; */
-=======
->>>>>>> 9f1cf38bc5edb76d5ab384fbde709ef247352425
+    /* padding-top: 100px; */
+    /* padding-top: 10px; */
+
 }
 
 /*=================================z-index check================================*/
@@ -51,7 +86,7 @@ header{
     width: 100%;
     height: 65px;
     background-color:#f8f8f9;
-    margin-bottom: 50px ;
+    margin-bottom: 35px ;
 }
 .top_banner figure {
     width: 650px;
@@ -62,7 +97,7 @@ header{
 
 .top_header{
     width: 1000px;
-    height: 50px;
+    height: 65px;
     margin: 0 auto;
     /* background-color: blue; */
     display: flex;
@@ -88,8 +123,13 @@ header{
     position: relative;
 }
 
-.top_header nav ul{
+.top_header nav .sub_menu{
     height: 25px;
+    /* background-color: red; */
+
+}
+.top_header nav .main_menu{
+    height: 40px;
     /* background-color: red; */
 
 }
@@ -108,7 +148,8 @@ color: rgb(110 108 108)
     position: absolute;
     bottom:0;
     right: 0;
-    width: 100%;    
+    width: 100%;  
+    height: 100px;  
 }
 
 .main_menu li{
@@ -123,16 +164,19 @@ color: rgb(110 108 108)
 }
 
 .sub_menu{
-    width: 350px;
+    width: 300px;
     position: absolute;
     top:0;
     right:0;
-
+/* background-color: blue; */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
 
 }
 
 .sub_menu li{
-    width: 25%;
+    /* width: 25%; */
     line-height: 15px;
     font-size: 10px !important;
 }
